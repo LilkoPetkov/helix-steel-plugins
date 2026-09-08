@@ -5,15 +5,7 @@
 
 (require "../global/global_steel_funcs.scm")
 
-(define *last-selection* "")
-
-(define (get-last-selection)
-  *last-selection*
-  )
-
-;; @doc
-;; Get ALL the secrets from the currently highlighted k8s namespace
-(define (k8s-g-secrets)
+(define (k8s-g-cfgmap)
   (define ns (helix.static.current-highlighted-text!))
   (if (not (string=? ns ""))
       (begin
@@ -21,14 +13,9 @@
         (helix.echo (string-append "Saved namespace: " ns)))
       (helix.echo "Warning: No text highlighted, keeping previous namespace."))
 
-  (define cmd
-    (string-append "kubectl get secrets -n " ns)
-    )
-
-  (helix.echo cmd)
-
   (clean-canvas)
-  (helix.insert-output cmd)
+  (helix.insert-output (string-append "kubectl get configmap -n " ns " --show-kind"))
   )
 
-(provide k8s-g-secrets *last-selection* get-last-selection)
+(provide k8s-g-cfgmap)
+

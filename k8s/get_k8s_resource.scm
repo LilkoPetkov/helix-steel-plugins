@@ -3,7 +3,6 @@
 (require (prefix-in helix. "helix/commands.scm"))
 (require (prefix-in helix.static. "helix/static.scm"))
 
-(require "./get_k8s_workload.scm")
 (require "../global/global_steel_funcs.scm")
 
 ;;@doc

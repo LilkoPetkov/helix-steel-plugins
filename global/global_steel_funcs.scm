@@ -7,4 +7,14 @@
     (helix.static.delete_selection)
   )
 
-(provide clean-canvas)
+(define *last-selection* "")
+
+(define (get-last-selection)
+  *last-selection*
+  )
+
+(define (set-last-selection! val)
+    (set! *last-selection* val)
+    )
+
+(provide *last-selection* clean-canvas get-last-selection set-last-selection!)

@@ -6,12 +6,6 @@
 (require "../k8s/get_k8s_all.scm")
 (require "../global/global_steel_funcs.scm")
 
-(define *last-selection* "")
-
-(define (get-last-selection)
-  *last-selection*
-  )
-
 ;;@doc
 ;; Captures current selection as a string and passes it to
 ;; k8s-g-all in order to fetch all resources for the Namespace
@@ -20,11 +14,11 @@
 
   (if (not (string=? selected-str ""))
       (begin
-        (set! *last-selection* selected-str)
+        (set-last-selection! selected-str)
         (helix.echo (string-append "Saved namespace: " selected-str)))
       (helix.echo "Warning: No text highlighted, keeping previous namespace."))
 
   (clean-canvas)
   (k8s-g-all (get-last-selection)))
 
-(provide k8s-g-wk *last-selection* get-last-selection clean-canvas)
+(provide k8s-g-wk)
